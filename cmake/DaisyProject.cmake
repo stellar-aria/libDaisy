@@ -1,3 +1,4 @@
+project(${FIRMWARE_NAME})
 set(DAISY_STORAGE flash CACHE STRING "Select the storage destination of the executable.")
 
 if(DEFINED CUSTOM_LINKER_SCRIPT)
@@ -95,6 +96,8 @@ target_link_options(${FIRMWARE_NAME} PUBLIC
 
     # Currently a GSoC project to port this to LLD
     $<$<CXX_COMPILER_ID:GNU>:LINKER:--print-memory-usage>
+
+    $<$<CONFIG:RELEASE>:-flto>
 )
 
 add_custom_command(TARGET ${FIRMWARE_NAME} POST_BUILD
@@ -105,7 +108,13 @@ add_custom_command(TARGET ${FIRMWARE_NAME} POST_BUILD
     VERBATIM
 )
 
-option(DAISY_GENERATE_BIN "Sets whether or not to generate a raw binary image using objcopy (warning this is a very large file, as it is a representation of the *full memory space*.)")
+add_custom_target(${FIRMWARE_NAME}-bin POST_BUILD
+    COMMAND ${CMAKE_OBJCOPY} -O binary -S $<TARGET_FILE:${FIRMWARE_NAME}> ${FIRMWARE_NAME}.bin
+    BYPRODUCTS ${FIRMWARE_NAME}.bin
+    DEPENDS ${FIRMWARE_NAME}
+    COMMENT "Generating binary image"
+    VERBATIM
+)
 
 if(DAISY_GENERATE_BIN)
     add_custom_command(TARGET ${FIRMWARE_NAME} POST_BUILD

@@ -1,0 +1,68 @@
+--- ./Src/stm32h7xx_ll_sdmmc.c	2024-01-17 11:59:21 +0000
++++ ./Src/stm32h7xx_ll_sdmmc.c	2024-01-17 11:58:52 +0000
+@@ -1262,7 +1262,7 @@
+ 
+   /* 8 is the number of required instructions cycles for the below loop statement.
+   The Timeout is expressed in ms */
+-  uint32_t count = Timeout * (SystemCoreClock / 8U / 1000U);
++  __IO uint32_t count = Timeout * (SystemCoreClock / 8U / 1000U);
+ 
+   do
+   {
+@@ -1395,7 +1395,7 @@
+   uint32_t sta_reg;
+   /* 8 is the number of required instructions cycles for the below loop statement.
+   The SDMMC_CMDTIMEOUT is expressed in ms */
+-  uint32_t count = SDMMC_CMDTIMEOUT * (SystemCoreClock / 8U / 1000U);
++  __IO uint32_t count = SDMMC_CMDTIMEOUT * (SystemCoreClock / 8U / 1000U);
+ 
+   do
+   {
+@@ -1439,7 +1439,7 @@
+   uint32_t sta_reg;
+   /* 8 is the number of required instructions cycles for the below loop statement.
+   The SDMMC_CMDTIMEOUT is expressed in ms */
+-  uint32_t count = SDMMC_CMDTIMEOUT * (SystemCoreClock / 8U / 1000U);
++  __IO uint32_t count = SDMMC_CMDTIMEOUT * (SystemCoreClock / 8U / 1000U);
+ 
+   do
+   {
+@@ -1481,7 +1481,7 @@
+ 
+   /* 8 is the number of required instructions cycles for the below loop statement.
+   The SDMMC_CMDTIMEOUT is expressed in ms */
+-  uint32_t count = SDMMC_CMDTIMEOUT * (SystemCoreClock / 8U / 1000U);
++  __IO uint32_t count = SDMMC_CMDTIMEOUT * (SystemCoreClock / 8U / 1000U);
+ 
+   do
+   {
+@@ -1553,7 +1553,7 @@
+   uint32_t sta_reg;
+   /* 8 is the number of required instructions cycles for the below loop statement.
+   The SDMMC_CMDTIMEOUT is expressed in ms */
+-  uint32_t count = SDMMC_CMDTIMEOUT * (SystemCoreClock / 8U / 1000U);
++  __IO uint32_t count = SDMMC_CMDTIMEOUT * (SystemCoreClock / 8U / 1000U);
+ 
+   do
+   {
+@@ -1613,7 +1613,7 @@
+ {
+   /* 8 is the number of required instructions cycles for the below loop statement.
+   The SDMMC_CMDTIMEOUT is expressed in ms */
+-  uint32_t count = SDMMC_CMDTIMEOUT * (SystemCoreClock / 8U / 1000U);
++  __IO uint32_t count = SDMMC_CMDTIMEOUT * (SystemCoreClock / 8U / 1000U);
+ 
+   do
+   {
+--- ./Src/stm32h7xx_hal.c     2024-01-27 14:28:13 +0000
++++ ./Src/stm32h7xx_hal.c     2024-01-27 14:31:55 +0000
+@@ -187,9 +187,6 @@
+ HAL_StatusTypeDef HAL_DeInit(void)
+ {
+   /* Reset of all peripherals */
+-  __HAL_RCC_AHB3_FORCE_RESET();
+-  __HAL_RCC_AHB3_RELEASE_RESET();
+-
+   __HAL_RCC_AHB1_FORCE_RESET();
+   __HAL_RCC_AHB1_RELEASE_RESET();
+
