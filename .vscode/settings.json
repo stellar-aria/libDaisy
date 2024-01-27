@@ -92,4 +92,9 @@
         "${workspaceFolder}/tests",
     ],
     "cmake.buildDirectory": "${sourceDirectory}/build",
+    "cmake.configureArgs": [
+        "-DCMAKE_TOOLCHAIN_FILE=${workspaceRoot}/cmake/toolchains/ArmGNUToolchain.cmake",
+        //"-DTOOLCHAIN_PREFIX=C:/Developer/LLVMEmbeddedToolchainForArm",
+        "-DTOOLCHAIN_PREFIX=C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/12.3 rel1",
+    ],
 }

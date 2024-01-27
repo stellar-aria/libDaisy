@@ -3,6 +3,8 @@
 		"ms-vscode.cpptools",
 		"xaver.clang-format",
 		"vadimcn.vscode-lldb",
+		"marus25.cortex-debug",
+		"llvm-vs-code-extensions.vscode-clangd",
 		"ms-vscode.cmake-tools",
 		"matepek.vscode-catch2-test-adapter",
 	]
