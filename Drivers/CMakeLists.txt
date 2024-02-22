@@ -32,7 +32,7 @@ target_link_libraries(CMSIS_DEVICE_H7 PUBLIC
 # STM32H7xx HAL Driver
 FetchContent_Declare(stm32h7xx_hal_driver
   URL https://github.com/STMicroelectronics/stm32h7xx_hal_driver/archive/refs/tags/v1.11.2.tar.gz
-  URL_HASH MD5=b1beaeb49598ae7a54ad4a2626303976
+  URL_HASH MD5=67402ec717e640e8431387ee020aacf9
 
   # NOTE: In-tree source patch until fixed upstream (volatile counters/loop unrolling)
   PATCH_COMMAND git apply --ignore-space-change --ignore-whitespace ${CMAKE_CURRENT_SOURCE_DIR}/stm32h7xx.patch
