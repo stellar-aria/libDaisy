@@ -35,6 +35,7 @@ cmake_path(SET MODULE_DIR "${CMAKE_CURRENT_LIST_DIR}/src")
 
 include(${CMAKE_CURRENT_LIST_DIR}/cmake/internal/tools.cmake)
 
+include(FetchContent)
 add_subdirectory(Drivers)
 add_subdirectory(Middlewares/ST)
 add_subdirectory(Middlewares/Third_Party/FatFs)

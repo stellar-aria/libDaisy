@@ -1,12 +1,18 @@
 # USB Device Library
+FetchContent_Declare(stm32_mw_usb_device
+  GIT_REPOSITORY https://github.com/STMicroelectronics/stm32_mw_usb_device/
+  GIT_TAG v2.11.2
+)
+FetchContent_MakeAvailable(stm32_mw_usb_device)
+
 add_library(STM32_USB_DEVICE_LIBRARY STATIC
   ../Patched/ST/STM32_USB_Device_Library/Class/CDC/Src/usbd_cdc.c
-  STM32_USB_Device_Library/Core/Src/usbd_core.c
-  STM32_USB_Device_Library/Core/Src/usbd_ctlreq.c
-  STM32_USB_Device_Library/Core/Src/usbd_ioreq.c
+  ${stm32_mw_usb_device_SOURCE_DIR}/Core/Src/usbd_core.c
+  ${stm32_mw_usb_device_SOURCE_DIR}/Core/Src/usbd_ctlreq.c
+  ${stm32_mw_usb_device_SOURCE_DIR}/Core/Src/usbd_ioreq.c
 )
 target_include_directories(STM32_USB_DEVICE_LIBRARY PUBLIC
-  STM32_USB_Device_Library/Core/Inc
+  ${stm32_mw_usb_device_SOURCE_DIR}/Core/Inc
   ../Patched/ST/STM32_USB_Device_Library/Class/CDC/Inc
   ${MODULE_DIR}/usbd # for conf
 )

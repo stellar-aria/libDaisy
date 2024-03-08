@@ -12,8 +12,9 @@ target_include_directories(CMSIS_CORE INTERFACE
 
 # CMSIS Device
 FetchContent_Declare(cmsis_device_h7
-  URL https://github.com/STMicroelectronics/cmsis_device_h7/archive/refs/tags/v1.10.3.tar.gz
-  URL_HASH MD5=f00ceaa34878335797b5604f14706b3c
+  GIT_REPOSITORY https://github.com/STMicroelectronics/cmsis_device_h7/
+  GIT_TAG v1.10.3
+  GIT_SHALLOW true
 )
 FetchContent_MakeAvailable(cmsis_device_h7)
 
@@ -31,11 +32,15 @@ target_link_libraries(CMSIS_DEVICE_H7 PUBLIC
 
 # STM32H7xx HAL Driver
 FetchContent_Declare(stm32h7xx_hal_driver
-  URL https://github.com/STMicroelectronics/stm32h7xx_hal_driver/archive/refs/tags/v1.11.2.tar.gz
-  URL_HASH MD5=67402ec717e640e8431387ee020aacf9
+  GIT_REPOSITORY https://github.com/STMicroelectronics/stm32h7xx_hal_driver/
+  GIT_TAG v1.11.2
+  GIT_SHALLOW true
 
   # NOTE: In-tree source patch until fixed upstream (volatile counters/loop unrolling)
   PATCH_COMMAND git apply --ignore-space-change --ignore-whitespace ${CMAKE_CURRENT_SOURCE_DIR}/stm32h7xx.patch
+
+  # Do not reapply patch once populated
+  UPDATE_DISCONNECTED true
 )
 FetchContent_MakeAvailable(stm32h7xx_hal_driver)
 
