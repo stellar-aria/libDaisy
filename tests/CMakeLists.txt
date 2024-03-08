@@ -2,7 +2,15 @@ cmake_minimum_required(VERSION 3.16)
 project(daisy-test)
 
 find_package(Threads REQUIRED)
-add_subdirectory(googletest)
+
+include(FetchContent)
+FetchContent_Declare(googletest
+  GIT_REPOSITORY https://github.com/google/googletest.git
+  GIT_TAG v1.14.0
+  GIT_SHALLOW true
+)
+FetchContent_MakeAvailable(googletest)
+
 include(GoogleTest)
 
 set(MODULE_DIR ../src)
@@ -54,7 +62,7 @@ function(add_gtest source_file)
   )
 
   # Add the target as a test
-  #add_test(NAME ${test_name} COMMAND ${test_name} --verbose)
+  # add_test(NAME ${test_name} COMMAND ${test_name} --verbose)
 
   # Discover unit tests inside it
   gtest_discover_tests(${test_name})
