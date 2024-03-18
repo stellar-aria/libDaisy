@@ -133,7 +133,7 @@ add_library(FatFs STATIC
 )
 
 target_include_directories(FatFs PUBLIC
-  src
+  FatFs/src
   ${MODULE_DIR}/sys
   ${MODULE_DIR} # for util/bsp_sd_diskio.h
 )
