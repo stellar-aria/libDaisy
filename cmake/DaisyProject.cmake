@@ -108,7 +108,7 @@ add_custom_command(TARGET ${FIRMWARE_NAME} POST_BUILD
     VERBATIM
 )
 
-add_custom_target(${FIRMWARE_NAME}-bin POST_BUILD
+add_custom_target(${FIRMWARE_NAME}-bin
     COMMAND ${CMAKE_OBJCOPY} -O binary -S $<TARGET_FILE:${FIRMWARE_NAME}> ${FIRMWARE_NAME}.bin
     BYPRODUCTS ${FIRMWARE_NAME}.bin
     DEPENDS ${FIRMWARE_NAME}
